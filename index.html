@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Gradus - Industry-Grade Autonomous Agent Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            background: white;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Architecture Grid */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .layer-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .layer-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
+        }
+
+        .layer-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .layer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .layer-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Agent Cards */
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .agent-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .agent-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .agent-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .agent-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-features li {
+            padding: 0.5rem 0;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .agent-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .agent-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--light);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        /* Pipeline */
+        .pipeline {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pipeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            pointer-events: none;
+        }
+
+        .pipeline-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .pipeline-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .pipeline-step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Tech Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-category {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        .tech-category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--light);
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Value Grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .value-number {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .value-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .value-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-subtitle {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>AI Gradus</h1>
+            <div class="subtitle">Industry-Grade Autonomous Agent Platform</div>
+            <div class="tagline">
+                Transforming Ukraine's HoReCa industry through intelligent automation,
+                multi-agent orchestration, and enterprise-scale AI deployment
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Autonomous Agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40K+</div>
+                    <div class="stat-label">Retail Touchpoints</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">800+</div>
+                    <div class="stat-label">Active Employees</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Years in Business</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Overview -->
+    <section id="overview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Architecture</h2>
+                <p class="section-subtitle">
+                    A comprehensive ecosystem of interconnected AI agents serving content automation,
+                    HR management, sales enablement, and business intelligence for Ukraine's largest alcohol distributor
+                </p>
+            </div>
+
+            <div class="architecture-grid">
+                <div class="layer-card">
+                    <div class="layer-icon">🎯</div>
+                    <div class="layer-title">Content Layer</div>
+                    <div class="layer-description">
+                        Automated content scraping, translation, and distribution across multiple channels
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Claude API</span>
+                        <span class="tech-badge">DALL-E</span>
+                    </div>
+                </div>
+
+                <div class="layer-card">
+                    <div class="layer-icon">🧠</div>
+                    <div class="layer-title">Intelligence Layer</div>
+                    <div class="layer-description">
+                        RAG-powered knowledge bases with vector embeddings and semantic search
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Pinecone</span>
+                        <span class="tech-badge">OpenAI</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Vector DB</span>
+                    </div>
+                </div>
+
+                <div class="layer-card">
+                    <div class="layer-icon">⚡</div>
+                    <div class="layer-title">Orchestration Layer</div>
+                    <div class="layer-description">
+                        Autonomous scheduling, multi-agent coordination, and workflow automation
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">APScheduler</span>
+                        <span class="tech-badge">Telegram</span>
+                        <span class="tech-badge">WebSockets</span>
+                        <span class="tech-badge">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents -->
+    <section id="agents">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Autonomous Agent Ecosystem</h2>
+                <p class="section-subtitle">
+                    Four specialized AI agents working in concert to automate and optimize business operations
+                </p>
+            </div>
+
+            <div class="agents-grid">
+                <!-- GradusMedia Agent -->
+                <div class="agent-card">
+                    <div class="agent-avatar">📰</div>
+                    <div class="agent-name">GradusMedia</div>
+                    <div class="agent-role">Content Automation Agent</div>
+                    <div class="agent-description">
+                        Autonomous B2B media platform that scrapes international beverage industry news,
+                        translates to Ukrainian, generates contextual images, and distributes across social media.
+                    </div>
+                    <ul class="agent-features">
+                        <li>Multi-source content aggregation</li>
+                        <li>AI-powered translation (Claude)</li>
+                        <li>Automated image generation (DALL-E)</li>
+                        <li>Telegram approval workflow</li>
+                        <li>Social media distribution</li>
+                        <li>Duplicate detection</li>
+                    </ul>
+                    <div class="agent-metrics">
+                        <div class="metric">
+                            <div class="metric-value">3x</div>
+                            <div class="metric-label">Daily Cycles</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5+</div>
+                            <div class="metric-label">Content Sources</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maya AI Agent -->
+                <div class="agent-card">
+                    <div class="agent-avatar">👤</div>
+                    <div class="agent-name">Maya AI</div>
+                    <div class="agent-role">HR & Knowledge Assistant</div>
+                    <div class="agent-description">
+                        Internal chatbot serving 800+ TD AV employees with HR support and comprehensive brand knowledge,
+                        optimized for employees without corporate email access.
+                    </div>
+                    <ul class="agent-features">
+                        <li>SMS-based authentication</li>
+                        <li>RAG-powered brand knowledge</li>
+                        <li>Preset answer system</li>
+                        <li>Facebook Messenger integration</li>
+                        <li>Multi-tier pricing (Haiku/Sonnet)</li>
+                        <li>Cost optimization (85% reduction)</li>
+                    </ul>
+                    <div class="agent-metrics">
+                        <div class="metric">
+                            <div class="metric-value">800+</div>
+                            <div class="metric-label">Active Users</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">85%</div>
+                            <div class="metric-label">Cost Reduction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gradus AI - Content -->
+                <div class="agent-card">
+                    <div class="agent-avatar">🎨</div>
+                    <div class="agent-name">Gradus AI - Content</div>
+                    <div class="agent-role">Marketing Automation Agent</div>
+                    <div class="agent-description">
+                        Stage 1 of the comprehensive Gradus platform, providing alcohol/beverage brands with
+                        automated content marketing and social media management.
+                    </div>
+                    <ul class="agent-features">
+                        <li>Automated content generation</li>
+                        <li>Brand-specific customization</li>
+                        <li>Multi-channel publishing</li>
+                        <li>Editorial calendar management</li>
+                        <li>Performance analytics</li>
+                        <li>Client dashboard</li>
+                    </ul>
+                    <div class="agent-metrics">
+                        <div class="metric">
+                            <div class="metric-value">∞</div>
+                            <div class="metric-label">Scalability</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">24/7</div>
+                            <div class="metric-label">Automation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gradus AI - Enterprise -->
+                <div class="agent-card">
+                    <div class="agent-avatar">🚀</div>
+                    <div class="agent-name">Gradus AI - Enterprise</div>
+                    <div class="agent-role">Full-Stack Business Platform</div>
+                    <div class="agent-description">
+                        Complete four-stage platform covering content marketing, lead generation,
+                        sales training, and HR automation for beverage industry clients.
+                    </div>
+                    <ul class="agent-features">
+                        <li>Content marketing automation</li>
+                        <li>AI-powered lead generation</li>
+                        <li>Sales team training & support</li>
+                        <li>HR process automation</li>
+                        <li>Integrated CRM workflows</li>
+                        <li>Business intelligence</li>
+                    </ul>
+                    <div class="agent-metrics">
+                        <div class="metric">
+                            <div class="metric-value">4</div>
+                            <div class="metric-label">Platform Stages</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">B2B</div>
+                            <div class="metric-label">SaaS Model</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CI/CD Pipeline -->
+    <section id="pipeline">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Production-Grade CI/CD Pipeline</h2>
+                <p class="section-subtitle">
+                    Automated deployment pipeline with version control, testing, and multi-environment orchestration
+                </p>
+            </div>
+
+            <div class="pipeline">
+                <h3 class="pipeline-title">Deployment Workflow</h3>
+                <div class="pipeline-steps">
+                    <div class="pipeline-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Development</div>
+                        <div class="step-description">Replit Agent for rapid prototyping</div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Version Control</div>
+                        <div class="step-description">GitHub integration</div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Containerization</div>
+                        <div class="step-description">Docker builds</div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Testing</div>
+                        <div class="step-description">Automated quality checks</div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Staging</div>
+                        <div class="step-description">Pre-production validation</div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Production</div>
+                        <div class="step-description">Render + Cloudflare deployment</div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Monitoring</div>
+                        <div class="step-description">Health checks and tracking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technology Stack</h2>
+                <p class="section-subtitle">
+                    Enterprise-grade technologies chosen for scalability, reliability, and maintainability
+                </p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <div class="tech-icon">⚙️</div>
+                        Backend
+                    </div>
+                    <ul class="tech-list">
+                        <li>FastAPI (Python)</li>
+                        <li>PostgreSQL Database</li>
+                        <li>APScheduler</li>
+                        <li>SQLAlchemy ORM</li>
+                        <li>Pydantic Validation</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <div class="tech-icon">🎨</div>
+                        Frontend
+                    </div>
+                    <ul class="tech-list">
+                        <li>React 18</li>
+                        <li>TypeScript</li>
+                        <li>Tailwind CSS</li>
+                        <li>Vite Build Tool</li>
+                        <li>React Router</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <div class="tech-icon">🤖</div>
+                        AI/ML Services
+                    </div>
+                    <ul class="tech-list">
+                        <li>Claude API</li>
+                        <li>OpenAI GPT-4</li>
+                        <li>DALL-E 3</li>
+                        <li>Pinecone Vector DB</li>
+                        <li>RAG Architecture</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <div class="tech-icon">☁️</div>
+                        Infrastructure
+                    </div>
+                    <ul class="tech-list">
+                        <li>Render.com</li>
+                        <li>Cloudflare Pages</li>
+                        <li>Docker Containers</li>
+                        <li>GitHub CI/CD</li>
+                        <li>SSL/TLS Security</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <div class="tech-icon">🔗</div>
+                        Integrations
+                    </div>
+                    <ul class="tech-list">
+                        <li>Telegram Bot API</li>
+                        <li>Facebook Graph API</li>
+                        <li>LinkedIn API</li>
+                        <li>SMS Authentication</li>
+                        <li>WebSocket Real-time</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <div class="tech-icon">📊</div>
+                        Monitoring
+                    </div>
+                    <ul class="tech-list">
+                        <li>Application Logging</li>
+                        <li>API Health Checks</li>
+                        <li>Error Tracking</li>
+                        <li>Performance Metrics</li>
+                        <li>Cost Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Enterprise Features</h2>
+                <p class="section-subtitle">
+                    Production-ready capabilities built for scale, reliability, and real-world business operations
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">Autonomous Workflows</div>
+                    <div class="feature-description">
+                        Self-managing job scheduling with APScheduler. Zero human intervention required.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Cost Optimization</div>
+                    <div class="feature-description">
+                        85% API cost reduction through strategic model splitting and preset answer systems.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">RAG Architecture</div>
+                    <div class="feature-description">
+                        Retrieval-Augmented Generation with Pinecone for accurate, context-aware responses.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">Enterprise Security</div>
+                    <div class="feature-description">
+                        SMS authentication, secure API management, rate limiting, and comprehensive error handling.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Multi-Channel Distribution</div>
+                    <div class="feature-description">
+                        Automated publishing to Facebook, LinkedIn, and Telegram with platform-specific optimization.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-title">Bilingual Processing</div>
+                    <div class="feature-description">
+                        Native Ukrainian communication with Claude-powered translation and cultural adaptation.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Value -->
+    <section id="value">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Business Impact</h2>
+                <p class="section-subtitle">
+                    Measurable results demonstrating real-world value and operational excellence
+                </p>
+            </div>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-number">85%</div>
+                    <div class="value-title">Cost Reduction</div>
+                    <div class="value-description">
+                        Strategic model optimization dramatically reduced API costs while maintaining quality.
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-number">24/7</div>
+                    <div class="value-title">Autonomous Operation</div>
+                    <div class="value-description">
+                        Fully automated content pipeline requiring minimal human oversight.
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-number">100%</div>
+                    <div class="value-title">Brand Accuracy</div>
+                    <div class="value-description">
+                        RAG implementation ensuring all product information is factually correct.
+                    </div>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-number">40K+</div>
+                    <div class="value-title">Market Reach</div>
+                    <div class="value-description">
+                        Serving Ukraine's largest alcohol distributor with 40,000+ retail touchpoints.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Ready to Transform Your Business with AI?</div>
+            <div class="footer-subtitle">
+                Let's discuss how autonomous agent systems can automate, optimize, and enhance your operations
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>Konstantin Kovalchuk</span>
+                </div>
+                <div class="contact-item">
+                    <span>🏢</span>
+                    <span>Digital Marketing Director, TD AV</span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>GradusMedia.org</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth animations on scroll
+        const cards = document.querySelectorAll('.layer-card, .agent-card, .feature-card, .tech-category');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
