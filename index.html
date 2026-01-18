@@ -621,29 +621,280 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 1.5rem;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 3rem;
             }
 
             .architecture-grid {
                 grid-template-columns: 1fr;
             }
 
-            .value-grid {
+            .agents-grid {
                 grid-template-columns: 1fr;
             }
+        }
 
-            .pipeline-steps {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
             }
 
             .container {
                 padding: 0 1rem;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-title::after {
+                width: 60px;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .architecture-grid,
+            .agents-grid,
+            .features-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .layer-card,
+            .agent-card,
+            .feature-card,
+            .tech-category {
+                padding: 1.5rem;
+            }
+
+            .layer-icon,
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .layer-title,
+            .feature-title {
+                font-size: 1.3rem;
+            }
+
+            .agent-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .agent-name {
+                font-size: 1.5rem;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .value-card {
+                padding: 2rem;
+            }
+
+            .value-number {
+                font-size: 3rem;
+            }
+
+            .value-title {
+                font-size: 1.5rem;
+            }
+
+            .value-description {
+                font-size: 1rem;
+            }
+
+            .pipeline {
+                padding: 2rem 1.5rem;
+            }
+
+            .pipeline-title {
+                font-size: 1.5rem;
+            }
+
+            .pipeline-steps {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .footer {
+                padding: 2rem 0;
+            }
+
+            .footer-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero .tagline {
+                font-size: 0.9rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .layer-card,
+            .agent-card,
+            .feature-card {
+                padding: 1.25rem;
+            }
+
+            .agent-features li {
+                font-size: 0.9rem;
+            }
+
+            .metric-value {
+                font-size: 1.5rem;
+            }
+
+            .value-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Touch Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .stat-card,
+            .layer-card,
+            .agent-card,
+            .feature-card,
+            .tech-category {
+                transition: transform 0.2s ease;
+            }
+
+            .stat-card:active,
+            .layer-card:active,
+            .agent-card:active,
+            .feature-card:active {
+                transform: scale(0.98);
+            }
+
+            .layer-card:hover,
+            .agent-card:hover,
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            section {
+                background: #1e293b;
+            }
+
+            section:nth-child(even) {
+                background: #0f172a;
+            }
+
+            .layer-card,
+            .agent-card,
+            .feature-card,
+            .tech-category {
+                background: #1e293b;
+                border-color: #334155;
+            }
+
+            .layer-title,
+            .agent-name,
+            .feature-title,
+            .tech-category-title {
+                color: #f1f5f9;
+            }
+
+            .layer-description,
+            .agent-description,
+            .feature-description,
+            .tech-list li {
+                color: #94a3b8;
+            }
+
+            .agent-features li {
+                color: #e2e8f0;
             }
         }
     </style>
